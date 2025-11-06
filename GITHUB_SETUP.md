@@ -1,23 +1,27 @@
 # GitHub Issues + Projects - Setup Commands
 
+**Repository:** `drswobodziczka/lifegame`
+
+**Note:** If you run these commands from inside the repository directory, you can omit the `-R` parameter. The commands below include explicit `-R drswobodziczka/lifegame` for clarity and to work from any directory.
+
 ## 1. Create Labels
 
 ```bash
-gh label create "backlog" --color "d4c5f9" --description "Tasks in backlog"
-gh label create "next" --color "fbca04" --description "Next tasks to work on"
-gh label create "in-progress" --color "0e8a16" --description "Currently working on"
-gh label create "done" --color "1d76db" --description "Completed tasks"
-gh label create "bug" --color "d73a4a" --description "Bug fixes"
-gh label create "feature" --color "a2eeef" --description "New features"
-gh label create "documentation" --color "0075ca" --description "Documentation tasks"
-gh label create "testing" --color "f9d0c4" --description "Testing tasks"
+gh label create "backlog" --color "d4c5f9" --description "Tasks in backlog" -R drswobodziczka/lifegame
+gh label create "next" --color "fbca04" --description "Next tasks to work on" -R drswobodziczka/lifegame
+gh label create "in-progress" --color "0e8a16" --description "Currently working on" -R drswobodziczka/lifegame
+gh label create "done" --color "1d76db" --description "Completed tasks" -R drswobodziczka/lifegame
+gh label create "bug" --color "d73a4a" --description "Bug fixes" -R drswobodziczka/lifegame
+gh label create "feature" --color "a2eeef" --description "New features" -R drswobodziczka/lifegame
+gh label create "documentation" --color "0075ca" --description "Documentation tasks" -R drswobodziczka/lifegame
+gh label create "testing" --color "f9d0c4" --description "Testing tasks" -R drswobodziczka/lifegame
 ```
 
 ## 2. Create Project Board
 
 ```bash
-# Create project
-gh project create --title "Game of Life Backlog" --format board
+# Create project owned by user drswobodziczka
+gh project create --title "Game of Life Backlog" --owner drswobodziczka
 
 # Note: Custom columns (Next, In Progress) must be configured via Web UI:
 # https://github.com/drswobodziczka/lifegame/projects
@@ -27,37 +31,37 @@ gh project create --title "Game of Life Backlog" --format board
 
 ```bash
 # Feature: API endpoints
-gh issue create --title "Add API endpoint to get game state" --label "feature,next" --body "Create GET /api/game/state endpoint that returns current game state as JSON"
+gh issue create --title "Add API endpoint to get game state" --label "feature,next" --body "Create GET /api/game/state endpoint that returns current game state as JSON" -R drswobodziczka/lifegame
 
-gh issue create --title "Add API endpoint to advance game" --label "feature,next" --body "Create POST /api/game/step endpoint with parameter for number of steps"
+gh issue create --title "Add API endpoint to advance game" --label "feature,next" --body "Create POST /api/game/step endpoint with parameter for number of steps" -R drswobodziczka/lifegame
 
-gh issue create --title "Add API endpoint to set custom patterns" --label "feature,next" --body "Create POST /api/game/pattern endpoint to place patterns on the grid"
+gh issue create --title "Add API endpoint to set custom patterns" --label "feature,next" --body "Create POST /api/game/pattern endpoint to place patterns on the grid" -R drswobodziczka/lifegame
 
 # Testing
-gh issue create --title "Setup Jest testing framework" --label "testing,backlog" --body "Install Jest, configure package.json, add first test for gameState.js"
+gh issue create --title "Setup Jest testing framework" --label "testing,backlog" --body "Install Jest, configure package.json, add first test for gameState.js" -R drswobodziczka/lifegame
 
-gh issue create --title "Add unit tests for game logic" --label "testing,backlog" --body "Write tests for step(), setPattern(), and neighbor calculation"
+gh issue create --title "Add unit tests for game logic" --label "testing,backlog" --body "Write tests for step(), setPattern(), and neighbor calculation" -R drswobodziczka/lifegame
 
 # Features
-gh issue create --title "Add input validation for patterns" --label "feature,backlog" --body "Validate coordinates in setPattern(), return errors for invalid input"
+gh issue create --title "Add input validation for patterns" --label "feature,backlog" --body "Validate coordinates in setPattern(), return errors for invalid input" -R drswobodziczka/lifegame
 
-gh issue create --title "Add WebSocket support for real-time updates" --label "feature,backlog" --body "Implement WebSocket connection for live game state updates"
+gh issue create --title "Add WebSocket support for real-time updates" --label "feature,backlog" --body "Implement WebSocket connection for live game state updates" -R drswobodziczka/lifegame
 
-gh issue create --title "Add game statistics endpoint" --label "feature,backlog" --body "Return stats: living cells, generations, grid size"
+gh issue create --title "Add game statistics endpoint" --label "feature,backlog" --body "Return stats: living cells, generations, grid size" -R drswobodziczka/lifegame
 
-gh issue create --title "Add configurable grid size" --label "feature,backlog" --body "Allow custom grid dimensions instead of fixed 50x50"
+gh issue create --title "Add configurable grid size" --label "feature,backlog" --body "Allow custom grid dimensions instead of fixed 50x50" -R drswobodziczka/lifegame
 
 # Documentation
-gh issue create --title "Add API documentation" --label "documentation,backlog" --body "Document all endpoints with request/response examples"
+gh issue create --title "Add API documentation" --label "documentation,backlog" --body "Document all endpoints with request/response examples" -R drswobodziczka/lifegame
 
-gh issue create --title "Add architecture diagram" --label "documentation,backlog" --body "Create diagram showing dual server architecture"
+gh issue create --title "Add architecture diagram" --label "documentation,backlog" --body "Create diagram showing dual server architecture" -R drswobodziczka/lifegame
 ```
 
 ## 4. Add Issues to Project (optional)
 
 ```bash
 # List your projects to get PROJECT_NUMBER
-gh project list
+gh project list --owner drswobodziczka
 
 # Add issue to project (replace PROJECT_NUMBER and ISSUE_NUMBER)
 gh project item-add PROJECT_NUMBER --owner drswobodziczka --url https://github.com/drswobodziczka/lifegame/issues/ISSUE_NUMBER
@@ -77,34 +81,34 @@ To run all at once, copy these commands to terminal:
 
 ```bash
 # Labels
-gh label create "backlog" --color "d4c5f9" --description "Tasks in backlog"
-gh label create "next" --color "fbca04" --description "Next tasks to work on"
-gh label create "in-progress" --color "0e8a16" --description "Currently working on"
-gh label create "done" --color "1d76db" --description "Completed tasks"
-gh label create "bug" --color "d73a4a" --description "Bug fixes"
-gh label create "feature" --color "a2eeef" --description "New features"
-gh label create "documentation" --color "0075ca" --description "Documentation tasks"
-gh label create "testing" --color "f9d0c4" --description "Testing tasks"
+gh label create "backlog" --color "d4c5f9" --description "Tasks in backlog" -R drswobodziczka/lifegame
+gh label create "next" --color "fbca04" --description "Next tasks to work on" -R drswobodziczka/lifegame
+gh label create "in-progress" --color "0e8a16" --description "Currently working on" -R drswobodziczka/lifegame
+gh label create "done" --color "1d76db" --description "Completed tasks" -R drswobodziczka/lifegame
+gh label create "bug" --color "d73a4a" --description "Bug fixes" -R drswobodziczka/lifegame
+gh label create "feature" --color "a2eeef" --description "New features" -R drswobodziczka/lifegame
+gh label create "documentation" --color "0075ca" --description "Documentation tasks" -R drswobodziczka/lifegame
+gh label create "testing" --color "f9d0c4" --description "Testing tasks" -R drswobodziczka/lifegame
 
 # Project
-gh project create --title "Game of Life Backlog" --format board
+gh project create --title "Game of Life Backlog" --owner drswobodziczka
 
 # Issues - Features
-gh issue create --title "Add API endpoint to get game state" --label "feature,next" --body "Create GET /api/game/state endpoint that returns current game state as JSON"
-gh issue create --title "Add API endpoint to advance game" --label "feature,next" --body "Create POST /api/game/step endpoint with parameter for number of steps"
-gh issue create --title "Add API endpoint to set custom patterns" --label "feature,next" --body "Create POST /api/game/pattern endpoint to place patterns on the grid"
-gh issue create --title "Add WebSocket support for real-time updates" --label "feature,backlog" --body "Implement WebSocket connection for live game state updates"
-gh issue create --title "Add game statistics endpoint" --label "feature,backlog" --body "Return stats: living cells, generations, grid size"
-gh issue create --title "Add configurable grid size" --label "feature,backlog" --body "Allow custom grid dimensions instead of fixed 50x50"
-gh issue create --title "Add input validation for patterns" --label "feature,backlog" --body "Validate coordinates in setPattern(), return errors for invalid input"
+gh issue create --title "Add API endpoint to get game state" --label "feature,next" --body "Create GET /api/game/state endpoint that returns current game state as JSON" -R drswobodziczka/lifegame
+gh issue create --title "Add API endpoint to advance game" --label "feature,next" --body "Create POST /api/game/step endpoint with parameter for number of steps" -R drswobodziczka/lifegame
+gh issue create --title "Add API endpoint to set custom patterns" --label "feature,next" --body "Create POST /api/game/pattern endpoint to place patterns on the grid" -R drswobodziczka/lifegame
+gh issue create --title "Add WebSocket support for real-time updates" --label "feature,backlog" --body "Implement WebSocket connection for live game state updates" -R drswobodziczka/lifegame
+gh issue create --title "Add game statistics endpoint" --label "feature,backlog" --body "Return stats: living cells, generations, grid size" -R drswobodziczka/lifegame
+gh issue create --title "Add configurable grid size" --label "feature,backlog" --body "Allow custom grid dimensions instead of fixed 50x50" -R drswobodziczka/lifegame
+gh issue create --title "Add input validation for patterns" --label "feature,backlog" --body "Validate coordinates in setPattern(), return errors for invalid input" -R drswobodziczka/lifegame
 
 # Issues - Testing
-gh issue create --title "Setup Jest testing framework" --label "testing,backlog" --body "Install Jest, configure package.json, add first test for gameState.js"
-gh issue create --title "Add unit tests for game logic" --label "testing,backlog" --body "Write tests for step(), setPattern(), and neighbor calculation"
+gh issue create --title "Setup Jest testing framework" --label "testing,backlog" --body "Install Jest, configure package.json, add first test for gameState.js" -R drswobodziczka/lifegame
+gh issue create --title "Add unit tests for game logic" --label "testing,backlog" --body "Write tests for step(), setPattern(), and neighbor calculation" -R drswobodziczka/lifegame
 
 # Issues - Documentation
-gh issue create --title "Add API documentation" --label "documentation,backlog" --body "Document all endpoints with request/response examples"
-gh issue create --title "Add architecture diagram" --label "documentation,backlog" --body "Create diagram showing dual server architecture"
+gh issue create --title "Add API documentation" --label "documentation,backlog" --body "Document all endpoints with request/response examples" -R drswobodziczka/lifegame
+gh issue create --title "Add architecture diagram" --label "documentation,backlog" --body "Create diagram showing dual server architecture" -R drswobodziczka/lifegame
 
 echo "✅ Done! Now configure project columns at: https://github.com/drswobodziczka/lifegame/projects"
 ```
