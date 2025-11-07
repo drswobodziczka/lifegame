@@ -67,6 +67,61 @@ gh project list --owner drswobodziczka
 gh project item-add PROJECT_NUMBER --owner drswobodziczka --url https://github.com/drswobodziczka/lifegame/issues/ISSUE_NUMBER
 ```
 
+## 5. GitHub CLI Cheat Sheet
+
+### List Projects
+
+```bash
+# List all projects for user drswobodziczka
+gh project list --owner drswobodziczka
+
+# List projects with more details (JSON format)
+gh project list --owner drswobodziczka --format json
+```
+
+### List Issues
+
+```bash
+# List all issues in the repository
+gh issue list -R drswobodziczka/lifegame
+
+# List issues with specific label
+gh issue list --label "feature" -R drswobodziczka/lifegame
+
+# List issues with specific state
+gh issue list --state open -R drswobodziczka/lifegame
+gh issue list --state closed -R drswobodziczka/lifegame
+
+# List issues assigned to you
+gh issue list --assignee @me -R drswobodziczka/lifegame
+
+# List issues in JSON format
+gh issue list -R drswobodziczka/lifegame --format json
+```
+
+### List Labels
+
+```bash
+# List all labels in the repository
+gh label list -R drswobodziczka/lifegame
+
+# List labels in JSON format
+gh label list -R drswobodziczka/lifegame --format json
+```
+
+### Link Issue to Project
+
+```bash
+# First, get your project number
+gh project list --owner drswobodziczka
+
+# Then, add issue to project (replace PROJECT_NUMBER and ISSUE_NUMBER)
+gh project item-add PROJECT_NUMBER --owner drswobodziczka --url https://github.com/drswobodziczka/lifegame/issues/ISSUE_NUMBER
+
+# Example: Add issue #5 to project 1
+gh project item-add 1 --owner drswobodziczka --url https://github.com/drswobodziczka/lifegame/issues/5
+```
+
 ## Workflow
 
 1. **Create labels** - run all label commands
